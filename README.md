@@ -1,28 +1,20 @@
-# MLOps Pipeline 🔄
+# MLOps Pipeline
 
-End-to-end MLOps pipeline with data validation, training, evaluation, and deployment.
+End-to-end MLOps pipeline with experiment tracking, data versioning, and model deployment.
 
-## Features
-
-- **Data Validation**: Great Expectations integration
-- **Training**: Multi-GPU, distributed training support
-- **Evaluation**: Automated model comparison
-- **Deployment**: Docker + Kubernetes ready
-- **MLflow Integration**: Experiment tracking, model registry
-- **CI/CD**: GitHub Actions templates
+## Components
+- **MLflow** — Experiment tracking & model registry
+- **DVC** — Data versioning
+- **Docker** — Model serving container
+- **FastAPI** — Inference API
 
 ## Quick Start
-
-```python
-from mlops_pipeline import Pipeline
-
-pipeline = Pipeline(experiment_name="my-model")
-pipeline.validate_data(train_df, schema=data_schema)
-pipeline.train(model, train_df, val_df, params={"epochs": 10})
-pipeline.evaluate(test_df, metrics=["accuracy", "f1"])
-pipeline.deploy(target="kubernetes", replicas=3)
+```bash
+dvc pull
+python train.py  # Logs to MLflow
+dvc push
+docker build -t ml-model .
 ```
 
 ## License
-
 MIT
